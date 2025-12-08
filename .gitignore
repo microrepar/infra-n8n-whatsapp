@@ -1,0 +1,5 @@
+*_data/
+evolution_instances/
+local-files/
+.env
+contatos-*
