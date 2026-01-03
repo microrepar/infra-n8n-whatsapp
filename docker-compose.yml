@@ -35,7 +35,7 @@ services:
 
   n8n:
     container_name: n8n
-    image: n8nio/n8n:latest
+    build: .
     restart: always
     ports:
       - "5678:5678"
@@ -44,7 +44,7 @@ services:
       - N8N_PROTOCOL=http
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=production
-      - GENERIC_TIMEZONE=America/Sao_Paulo
+      - GENERIC_TIMEZONE=America/Sao_Paulo      
     volumes:
       - ./n8n_data:/home/node/.n8n
       - ./local-files:/files
