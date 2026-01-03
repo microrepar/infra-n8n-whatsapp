@@ -1,14 +1,11 @@
 # Dockerfile para o serviço n8n com Python instalado
-FROM n8nio/n8n:latest
+FROM python:3.11-slim
 
-# Trocar para root para instalar pacotes
-USER root
+# Instalar Node.js e npm
+RUN apt-get update && apt-get install -y nodejs npm && rm -rf /var/lib/apt/lists/*
 
-# Instalar Python 3 e pip (baseado em Debian/Ubuntu)
-RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
+# Instalar n8n globalmente
+RUN npm install -g n8n
 
 # Verificar instalação
-RUN python3 --version && pip3 --version
-
-# Voltar para o usuário node
-USER node
+RUN python3 --version && pip3 --version && n8n --version
